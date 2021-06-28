@@ -5,12 +5,14 @@ import com.thalesgroup.prueba.data.JobTitle;
 import com.thalesgroup.prueba.services.EmployeeService;
 import com.thalesgroup.prueba.services.JobTitleService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Slf4j
 @Component
 @AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
@@ -24,6 +26,8 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadData(){
+        log.info("Loading start data");
+
         JobTitle techLead = JobTitle.builder()
                 .jobTitleName("Tech Lead")
                 .jobDescription("Dev group leader")
@@ -66,5 +70,7 @@ public class DataLoader implements CommandLineRunner {
 
         employeeService.save(pedro);
         employeeService.save(test);
+
+        log.info("Saved data!");
     }
 }
